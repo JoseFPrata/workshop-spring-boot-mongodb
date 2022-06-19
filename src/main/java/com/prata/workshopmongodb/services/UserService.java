@@ -41,6 +41,22 @@ public class UserService {
 		
 	}
 	
+	/* Para atualizar tem que fazer os dois métodos abaixo pois o 1o Update encontra e o 2o updateData atualiza  
+	 * Deve-se perceber que no 2o não se copia o id pois esse não muda
+	 * */
+	public User update(User obj) {
+		User newObj = findById(obj.getId());
+		updateData(newObj, obj);
+		return repo.save(newObj);
+		}
+	
+	private void updateData(User newObj, User obj) {
+		newObj.setName(obj.getName());
+		newObj.setEmail(obj.getEmail());
+		
+	}
+	
+
 	public User fromDTO(UserDTO objDto) {
 		return new User(objDto.getId(),objDto.getName(), objDto.getEmail());
 		
