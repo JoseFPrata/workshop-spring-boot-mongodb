@@ -9,6 +9,7 @@ import org.springframework.boot.CommandLineRunner;
 
 import com.prata.workshopmongodb.domain.Post;
 import com.prata.workshopmongodb.domain.User;
+import com.prata.workshopmongodb.dto.AuthorDTO;
 import com.prata.workshopmongodb.repository.PostRepository;
 import com.prata.workshopmongodb.repository.UserRepository;
 
@@ -32,10 +33,12 @@ public class Instatiation implements CommandLineRunner {
 		User alex = new User(null, "Alex Green", "alex@gmail.com");
 		User bob = new User(null, "Bob Grey", "bob@gmail.com");
 		
-		Post post1 = new Post(null, sdf.parse("21/03/2018"), "Partiu Viagem", "Vou viajar para São Paulo!abs",maria);
-		Post post2 = new Post(null, sdf.parse("21/03/2018"), "Partiu Viagem", "Vou viajar para São Paulo!abs",maria);
+		userReposiroty.saveAll(Arrays.asList(maria,alex,bob));
 		
-		userReposiroty.saveAll(Arrays.asList(maria, alex, bob));
+		Post post1 = new Post(null, sdf.parse("21/03/2018"), "Partiu Viagem", "Vou viajar para São Paulo!abs",new AuthorDTO(maria));
+		Post post2 = new Post(null, sdf.parse("21/03/2018"), "Partiu Viagem", "Vou viajar para São Paulo!abs",new AuthorDTO(maria));
+		
+	
 		postRepository.saveAll(Arrays.asList(post1, post2));
 		
 	
