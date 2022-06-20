@@ -29,9 +29,9 @@ public class Instatiation implements CommandLineRunner {
 		
 		userReposiroty.deleteAll();
 		postRepository.deleteAll();
-		User maria = new User(null, "Maria Brown", "maria@gmail.com");
-		User alex = new User(null, "Alex Green", "alex@gmail.com");
-		User bob = new User(null, "Bob Grey", "bob@gmail.com");
+		User maria = new User("_id", "Maria Brown", "maria@gmail.com");
+		User alex = new User("_id", "Alex Green", "alex@gmail.com");
+		User bob = new User("_id", "Bob Grey", "bob@gmail.com");
 		
 		userReposiroty.saveAll(Arrays.asList(maria,alex,bob));
 		
@@ -40,6 +40,10 @@ public class Instatiation implements CommandLineRunner {
 		
 	
 		postRepository.saveAll(Arrays.asList(post1, post2));
+		
+		maria.getPosts().addAll(Arrays.asList(post1,post2));
+		userReposiroty.save(maria);
+		
 		
 	
 	
